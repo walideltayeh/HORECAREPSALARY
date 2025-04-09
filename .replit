@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "postgresql-16"]
+modules = ["nodejs-20", "postgresql-16", "python-3.11", "web"]
 run = "npm run dev"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
@@ -7,8 +7,8 @@ channel = "stable-24_05"
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["sh", "-c", "streamlit run --server.address 0.0.0.0 --server.headless true --server.enableCORS=false --server.enableWebsocketCompression=false main.py"]
+build = ["sh", "-c", "npm run build"]
+run = ["sh", "-c", "node dist/index.js"]
 
 [workflows]
 runButton = "Streamlit"
