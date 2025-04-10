@@ -1,14 +1,26 @@
 {
   "version": 2,
-  "functions": {
-    "api/serverless.js": {
-      "memory": 1024,
-      "maxDuration": 10
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/**",
+      "use": "@vercel/static"
     }
-  },
+  ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/serverless.js" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/api/serverless.js" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
   ]
 }
