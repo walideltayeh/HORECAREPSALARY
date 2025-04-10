@@ -7,8 +7,8 @@ channel = "stable-24_05"
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["sh", "-c", "streamlit run --server.address 0.0.0.0 --server.headless true --server.enableCORS=false --server.enableWebsocketCompression=false main.py"]
+build = ["sh", "-c", "npm run build"]
+run = ["sh", "-c", "node api/server.js"]
 
 [workflows]
 runButton = "Run Dev Server"
